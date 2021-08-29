@@ -1,0 +1,100 @@
+<html>
+    <header>
+        <script src="../../dist/vue.js"></script>
+    </header>
+    <body>
+        <div id="app"><ele></ele></div>
+        <script>
+          Vue.component('ele', {
+            template: `<div id="app"><button name="button" @click="handleChange(1)">Add</button><button name="button" @click="handleChange(2)">Delete</button><button name="button" @click="handleChange(3)">reverse</button><button name="button" @click="handleChange(4)">move</button><button name="button" @click="handleChange(0)">重置</button><table border="1"><tr><th>Month</th><th>Savings</th></tr><tr v-for="(data, idx) in tableData" :key="idx"><td><span>{{data.month}}</span></td><td><span>{{data.saving}}</span></td></tr></table></div>`,
+            data: function (){
+              return {
+                tableData: [{
+                  month: 0,
+                  saving: 1000,
+                },
+                {
+                  month: 1,
+                  saving: 2000,
+                },
+                {
+                  month: 2,
+                  saving: 3000,
+                },
+                {
+                  month: 3,
+                  saving: 4000,
+                },
+                {
+                  month: 4,
+                  saving: 5000,
+                },
+                {
+                  month: 5,
+                  saving: 6000,
+                },
+                {
+                  month: 6,
+                  saving: 7000,
+                },
+                {
+                  month: 7,
+                  saving: 8000,
+                },
+                {
+                  month: 8,
+                  saving: 9000,
+                }
+              ]
+              }
+              },
+            methods:{
+              handleChange(type) {
+                switch (type) {
+                  case 0:
+                    this.tableData = [{
+                        month: 0,
+                        saving: 1000,
+                      },
+                      {
+                        month: 1,
+                        saving: 2000,
+                      },
+                      {
+                        month: 2,
+                        saving: 3000,
+                      },
+                      {
+                        month: 3,
+                        saving: 4000,
+                      }
+                    ]
+                    break;
+                  case 1:
+                    this.tableData.push({
+                      month: 4,
+                      saving: 5000,
+                    })
+                    break;
+                  case 2:
+                    this.tableData.pop()
+                    break;
+                  case 3:
+                    // this.tableData.reverse()
+                    this.tableData.splice(7,1,...this.tableData.splice(0, 1, this.tableData[7]),)
+                    break;
+                  case 4:
+                    this.tableData.splice(2,1,...this.tableData.splice(1, 1, this.tableData[2]),)
+                    break;
+                  default:
+                    break;
+                }
+              }
+            },
+          })
+           var app = new Vue({
+                el: '#app',
+            })
+        </script>
+    </body>
+</html>
